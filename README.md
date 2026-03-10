@@ -1,7 +1,7 @@
-# 🏦 零售銀行信用貸款違約預測 (Retail Bank Loan Default Prediction)
+# 🏦 銀行信用貸款違約風險預測 (Bank Credit Loan Default Risk Prediction)
 
 ## 📊 專案簡介 (Project Overview)
-本專案旨在運用機器學習技術，針對零售銀行的信用貸款申請者進行違約風險評估。透過分析申請者的財務狀況、信用評分與貸款條件，建立高準確度的二元分類模型，以輔助金融機構的授信人員進行客觀、數據驅動的決策。
+本專案旨在運用機器學習技術，針對銀行的信用貸款申請者進行違約風險評估。透過分析申請者的財務狀況、信用評分與貸款條件，建立高準確度的二元分類模型，以輔助金融機構的授信人員進行客觀、數據驅動的決策。
 
 ## 🎯 商業目的 (Business Objective)
 在金融業的授信與放款業務中，風險控管是維持資產品質與財務穩健的核心。本專案的商業價值體現於以下三個面向：
@@ -12,9 +12,7 @@
 ## 🛠️ 特徵工程與商業邏輯 (Feature Engineering)
 基於對財務數據特性的理解，本專案在送入模型前進行了以下關鍵特徵轉換：
 * **長尾分佈處理**：針對「個人收入 (person_income)」與「貸款金額 (loan_amnt)」等具有極端值特性的財務欄位進行 Log1p 轉換，穩定數值波動。
-* **核心風險指標建立**：
-  * `信用價值比 (Credit Value Ratio)`：結合貸款利率與信用評分，衡量風險定價的合理性。
-  * `年資負擔比 (Experience Burden Ratio)`：計算貸款佔收入比例與工作年資的關係，綜合評估申請者的還款壓力與職場穩定度。
+
 
 ## 🤖 模型建置與優化 (Model Architecture)
 * **演算法選擇**：選用 **LightGBM** (`LGBMClassifier`)，具備訓練速度快且能妥善處理類別變數的優勢。
@@ -23,9 +21,9 @@
 
 ## 📈 模型成效評估 (Model Performance)
 在處理極度不平衡的金融防範場景中，傳統的 Accuracy 容易產生「預測全為正常客戶即有高分」的盲點。因此，本專案將評估核心聚焦於 **AUC-PR (Area Under the Precision-Recall Curve)**。
-* **驗證集 AUC-PR Score**： `[請填入你跑出的分數，例如：0.7850]`
-* **驗證集 F1-Score (Macro)**： `[請填入你跑出的分數]`
-* **驗證集 Balanced Accuracy**： `[請填入你跑出的分數]`
+* **驗證集 AUC-PR Score**： `[0.8707]`
+* **驗證集 F1-Score (Macro)**： `[0.7556]`
+* **驗證集 Balanced Accuracy**： `[0.8858]`
 
 **💡 商業解讀**：
 高 AUC-PR 代表模型在抓出「真正會違約的客戶」時，依然能保持極高的精準度。這意味著業務端不需要為了防堵少數壞帳，而犧牲掉大量潛在的優質放款機會。
@@ -36,3 +34,10 @@
 *(請參考專案內的 `.ipynb` 檔案查看完整圖表)*
 * **學習曲線 (Learning Curve)**：監控 Train 與 Valid 之間的 AUC-PR 走勢，驗證模型穩定性。
 * **混淆矩陣 (Confusion Matrix)**：直觀呈現 True Positive 與 False Positive 的分佈狀況，做為未來調整核貸門檻 (Threshold) 的依據。
+
+
+
+## 📈 模型成果 (Model Performance)
+* **測試集 AUC-PR Score**： `[0.922]`
+* **測試集 F1-Score (Macro)**： `[0.885]`
+* **測試集 Balanced Accuracy**： `[0.918]`
